@@ -435,8 +435,8 @@ html {
   }
 
     .center-image {
-    top: 10%;
-    width: 90%;
+    top: 25%;
+    width: 120%;
   }
 
   .about-section {
@@ -464,6 +464,17 @@ html {
 
   .introduce {
     font-size: 16px; /* 본문 크기 축소 */
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 45%; /* 페이지 하단에서 약간 위쪽 */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    color: #000;
+    font-size: 16px;
+    opacity: 30%;
   }
 }
 
