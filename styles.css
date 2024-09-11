@@ -1,0 +1,675 @@
+@charset "UTF-8";
+
+/* 스크롤바 숨기기 (웹킷 기반 브라우저) */
+body::-webkit-scrollbar {
+  display: none; /* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+}
+
+/* 기본적으로 스크롤을 유지하되, 스크롤바를 숨기기 */
+body {
+  overflow: scroll; /* 스크롤 동작 유지 */
+}
+
+/* Firefox에서도 스크롤바 숨기기 */
+html {
+  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
+}
+
+@font-face {
+  font-family: 'Tenada';
+  src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2210-2@1.0/Tenada.woff2') format('woff2');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+    font-family: 'GmarketSansMedium';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansMedium.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+  font-family: 'Pretendard-Regular';
+  src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* 기본 스타일 */
+body,
+html {
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+/* 스크롤바 숨기기 */
+body {
+  overflow-y: hidden; /* 세로 스크롤바 숨기기 */
+}
+
+html {
+  overflow-y: hidden; /* 페이지의 스크롤 동작 유지 */
+  overflow-y: scroll; /* 페이지의 스크롤 동작 유지 */
+}
+
+
+
+/* 네비게이션 바 */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  padding: 10px 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  font-family: 'GmarketSansMedium';
+  font-weight: bold;
+  border-bottom: 1px solid #c5c5c5;
+}
+
+/* 로고 링크를 블록 요소로 변환해 클릭 영역 확장 */
+/* 로고 링크 스타일 */
+.navbar .logo {
+  display: block;               /* 링크 영역을 블록으로 설정 */
+  padding: 10px;                /* 클릭 가능한 영역을 확대 */
+  position: relative;           /* 다른 요소와 겹치지 않도록 설정 */
+  z-index: 10;                  /* 충분히 높은 z-index 값으로 설정 */
+  cursor: pointer;
+  margin-left: 20px;          /* 커서가 포인터로 변경되도록 설정 */
+}
+
+/* 로고 이미지 스타일 */
+.navbar .logo img {
+  display: block;               /* 이미지를 블록 요소로 설정 */
+  height: auto;
+  pointer-events: auto;  
+  width: 300px;
+}
+
+
+
+.navbar ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: fixed;
+}
+
+.navbar ul li {
+  display: inline;
+  margin: 0 15px;
+}
+
+.navbar ul li a {
+  color: #202020;
+  text-decoration: none;
+  font-size: 18px;
+}
+
+.navbar ul li a:hover {
+  color: #ffffff;
+  transition: all 0.3s;
+}
+
+/* 큰 이미지 섹션 (기본 스타일) */
+.center-image {
+  position: absolute;
+  top: -5%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: auto;
+  opacity: 0;
+  animation: fadeInMoveDown 2s ease-in-out forwards, floatEffect 4s ease-in-out 2s infinite;
+}
+
+
+  /* 스크롤 유도 텍스트 및 아이콘 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 60%; /* 페이지 하단에서 약간 위쪽 */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+  opacity: 30%;
+}
+
+.scroll-indicator p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.scroll-indicator img {
+  margin-top: 10px;
+  width: 50px; /* 화살표 아이콘 크기 */
+  height: auto;
+  animation: bounce 1.5s infinite; /* 아래로 튕기듯이 움직이는 애니메이션 */
+}  
+
+
+/* 태블릿 대응 (768px ~ 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .center-image {
+    top: 10%; /* 태블릿에서 이미지가 적절하게 배치되도록 수정 */
+    left: 55%;
+    width: 85%; /* 태블릿 크기에 맞춘 이미지 크기 */
+    transform: translate(-50%, -50%);
+  }
+
+  .moving-text {
+    font-size: 120px; /* 태블릿 크기 조정 */
+  }
+
+  .about-section {
+    padding: 40px;
+    height: auto;
+  }
+
+  .about-content {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .about-image img {
+    width: 70%;
+    margin-bottom: 20px;
+  }
+
+  .about-text {
+    max-width: 100%;
+  }
+
+  .about-me {
+    font-size: 26px;
+  }
+
+  .introduce {
+    font-size: 18px;
+  }
+
+  /* 스크롤 유도 텍스트 및 아이콘 */
+.scroll-indicator {
+  position: absolute;
+  bottom: 55%; /* 페이지 하단에서 약간 위쪽 */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+  opacity: 30%;
+}
+
+.scroll-indicator p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.scroll-indicator img {
+  margin-top: 10px;
+  width: 50px; /* 화살표 아이콘 크기 */
+  height: auto;
+  animation: bounce 1.5s infinite; /* 아래로 튕기듯이 움직이는 애니메이션 */
+}
+}
+
+/* 데스크탑 */
+@media (min-width: 1024px) {
+  .center-image {
+    top: -5%;
+    width: 100%;
+  }
+
+  .moving-text{
+    font-size: 150px;
+  }
+
+  #portfolio h3{
+    margin-top: 20px;
+    font-size: 30px;
+    font-family: 'NanumSquareNeoVariable';
+  }
+
+  #portfolio p{
+    margin-bottom: 20px;
+    font-size: 15px;
+    font-family: 'NanumSquareNeoVariable';
+  }
+
+.scroll-indicator {
+  position: absolute;
+  bottom: 35%; /* 페이지 하단에서 약간 위쪽 */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #000;
+  font-size: 16px;
+  opacity: 30%;
+}
+
+.scroll-indicator p {
+  margin: 0;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.scroll-indicator img {
+  margin-top: 10px;
+  width: 50px; /* 화살표 아이콘 크기 */
+  height: auto;
+  animation: bounce 1.5s infinite; /* 아래로 튕기듯이 움직이는 애니메이션 */
+}
+}
+
+
+
+
+/* 페이드인 + 내려오기 애니메이션 (한 번 실행) */
+@keyframes fadeInMoveDown {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, 0); /* 내려오는 부분 완료 */
+  }
+}
+
+/* 둥실둥실 떠다니는 애니메이션 (무한 반복, 자연스럽게 연결) */
+@keyframes floatEffect {
+  0% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -50px); /* 위로 살짝 떠오름 */
+  }
+  100% {
+    transform: translate(-50%, 0); /* 다시 원위치 */
+  }
+}
+
+
+
+
+
+/* 풍선 애니메이션 및 소개글 섹션 */
+.balloon-section {
+  height: 150vh;
+  position: relative;
+  background: linear-gradient(to top, #ffffff 0%, #ffffff 100%);
+  overflow: hidden;
+}
+
+
+
+
+
+/* 스크롤 유도 애니메이션 */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-10px);
+  }
+  60% {
+    transform: translateY(-5px);
+  }
+}
+
+.balloon-container {
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+}
+
+.balloon {
+  position: absolute;
+  border-radius: 50%;
+  transition: transform 0.5s ease-out;
+  opacity: 0.8;
+  width: 150px;
+  height: 150px;
+}
+
+/* 각 풍선에 그라데이션 적용 */
+/* 각 풍선에 그라데이션 적용 */
+#balloon1 { left: 5%; top: 10%; background: linear-gradient(120deg, #ff9a9e, #fad0c4); width: 15vw; height: 15vw; }
+#balloon2 { left: 30%; top: 35%; background: linear-gradient(45deg, #a1c4fd, #c2e9fb); width: 10vw; height: 10vw; }
+#balloon3 { left: 50%; top: 10%; background: linear-gradient(120deg, #fbc2eb, #a6c0fe); width: 8vw; height: 8vw; }
+#balloon4 { left: 70%; top: 150%; background: linear-gradient(120deg, #f6d365, #fda085); width: 15vw; height: 15vw; }
+#balloon5 { left: 90%; top: 10%; background: linear-gradient(120deg, #ff6b6b, #f06595); width: 13vw; height: 13vw; }
+#balloon6 { left: 15%; top: 110%; background: linear-gradient(45deg, #84fab0, #8fd3f4); width: 12vw; height: 12vw; }
+#balloon7 { left: 35%; top: 70%; background: linear-gradient(120deg, #d4fc79, #96e6a1); width: 9vw; height: 9vw; }
+#balloon8 { left: 55%; top: 60%; background: linear-gradient(45deg, #fcf7f8, #f3e9e7); width: 7vw; height: 7vw; }
+#balloon9 { left: 75%; top: 30%; background: linear-gradient(120deg, #c1c6ea, #d4a5a5); width: 8vw; height: 8vw; }
+#balloon10 { left: 85%; top: 40%; background: linear-gradient(45deg, #e0c3fc, #8ec5fc); width: 8vw; height: 8vw; }
+#balloon11 { left: 25%; top: 130%; background: linear-gradient(120deg, #ffecd2, #fcb69f); width: 10vw; height: 10vw; }
+#balloon12 { left: 65%; top: 20%; background: linear-gradient(45deg, #d4a5a5, #9b859d); width: 6vw; height: 6vw; }
+#balloon13 { left: 15%; top: 65%; background: linear-gradient(120deg, #fbc2eb, #a6c0fe); width: 7vw; height: 7vw; }
+#balloon14 { left: 65%; top: 80%; background: linear-gradient(45deg, #f6d365, #fda085); width: 10vw; height: 10vw; }
+#balloon15 { left: 85%; top: 150%; background: linear-gradient(120deg, #ff9a9e, #fad0c4); width: 4vw; height: 4vw; }
+#balloon16 { left: 25%; top: 165%; background: linear-gradient(45deg, #a1c4fd, #c2e9fb); width: 9vw; height: 9vw; }
+#balloon17 { left: 45%; top: 100%; background: linear-gradient(120deg, #fbc2eb, #a6c0fe); width: 8vw; height: 8vw; }
+#balloon18 { left: 21%; top: 290%; background: linear-gradient(120deg, #d4fc79, #96e6a1); width: 10vw; height: 10vw; }
+#balloon19 { left: 50%; top: 300%; background: linear-gradient(120deg, #fff3e3, #a6c0fe); width: 4vw; height: 4vw; }
+#balloon20 { left: 86%; top: 280%; background: linear-gradient(120deg, #f6d365, #fff352); width: 3vw; height: 3vw; }
+#balloon21 { left: 16%; top: 350%; background: linear-gradient(120deg, #ff84ff, #fff352); width: 3vw; height: 3vw; }
+#balloon22 { left: 36%; top: 300%; background: linear-gradient(120deg, #84fab0, #8fd3f4); width: 5vw; height: 5vw; }
+#balloon23 { left: 79%; top: 370%; background: linear-gradient(120deg, #f6d365, #fff352); width: 6vw; height: 6vw; }
+
+
+/* 기본 스타일 (데스크탑) */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background: #fff;
+  overflow: hidden;
+  height: 100vh;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.about-content {
+  display: flex;
+  align-items: center;
+  gap: 0px;
+}
+
+.about-image {
+  flex: 1;
+}
+
+.about-image img {
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.about-text {
+  flex: 1;
+  max-width: 1200px;
+}
+
+.about-text h2 {
+  margin-top: 0;
+}
+
+.about-text p {
+  line-height: 1.5;
+}
+
+.about-me {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.introduce {
+  font-size: 20px;
+}
+
+/* 모바일 대응 (최대 768px) */
+@media (max-width: 768px) {
+  .moving-text {
+    font-size: 80px; /* 모바일 크기 조정 */
+  }
+
+    .center-image {
+    top: 10%;
+    width: 90%;
+  }
+
+  .about-section {
+    padding: 30px;
+    height: auto;
+  }
+
+  .about-content {
+    flex-direction: column;
+    text-align: center; /* 텍스트를 중앙 정렬 */
+  }
+
+  .about-image img {
+    width: 60%; /* 이미지 크기 조정 */
+    margin-bottom: 20px; /* 이미지와 텍스트 사이 간격 */
+  }
+
+  .about-text {
+    max-width: 100%; /* 텍스트 최대 너비 제거 */
+  }
+
+  .about-me {
+    font-size: 24px; /* 제목 크기 축소 */
+  }
+
+  .introduce {
+    font-size: 16px; /* 본문 크기 축소 */
+  }
+}
+
+
+/* 전광판 텍스트 컨테이너 */
+.moving-text-container {
+  position: fixed; /* 스크롤해도 고정된 위치에 있도록 설정 */
+  top: 50%; /* 화면 중앙에 고정 */
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  z-index: 0; /* 글과 이미지 뒤에 위치 */
+  opacity: 0.1; /* 연한 회색 느낌 */
+  pointer-events: none; /* 마우스 이벤트 비활성화 */
+  transform: translateY(-50%); /* 화면 수직 중앙에 고정 */
+}
+
+/* 전광판 텍스트 */
+.moving-text {
+  position: relative;
+  white-space: nowrap;
+  animation: moveText 25s linear infinite;
+  color: #666; /* 연한 그레이 색상 */
+  font-family: 'Tenada';
+}
+
+/* 전광판 텍스트 애니메이션 */
+@keyframes moveText {
+  from {
+    transform: translateX(100%); /* 오른쪽에서 등장 */
+  }
+  to {
+    transform: translateX(-100%); /* 왼쪽으로 사라짐 */
+  }
+}
+
+/* 전광판 텍스트가 소개글 섹션과 추가 소개글 섹션에서만 보이도록 설정 */
+#about .moving-text-container, #extra-about .moving-text-container {
+  display: block; /* 해당 섹션에서만 보이도록 설정 */
+}
+
+body .moving-text-container {
+  display: none; /* 기본적으로 다른 섹션에서는 숨김 */
+}
+
+
+/* 추가 소개글 섹션 */
+#extra-about {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 50px;
+  background: #fff;
+  overflow: hidden;
+  height: 100vh;
+  box-sizing: border-box;
+}
+
+#extra-about .about-content {
+  display: flex;
+  align-items: center;
+  gap: 50px;
+}
+
+#extra-about .about-text {
+  flex: 1;
+  max-width: 1200px;
+}
+
+#extra-about .about-me {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+#extra-about .introduce {
+  line-height: 1.5;
+}
+
+/* 애니메이션 */
+#extra-about .about-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+#extra-about .about-text.in-view {
+  opacity: 1;
+  transform: translateY(0);
+  transition-delay: 0.5s;
+}
+
+
+
+
+/* 포트폴리오 섹션 */
+.portfolio-section {
+  padding: 50px 20px;
+}
+
+.portfolio-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+}
+
+.portfolio-item {
+  width: calc(50% - 20px); /* 두 개씩 나란히 배치 */
+  box-sizing: border-box;
+  opacity: 0; /* 기본적으로 숨김 상태 */
+  transform: translateY(20px); /* 살짝 아래에서 시작 */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* 애니메이션 효과 */
+  text-align: center; /* 텍스트 가운데 정렬 */
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.portfolio-item a {
+  text-decoration: none; /* 링크의 밑줄 없애기 */
+  color: inherit; /* 텍스트 색상 상속 */
+}
+
+.portfolio-item.in-view {
+  opacity: 1;
+  transform: translateY(0); /* 원래 위치로 돌아오면서 서서히 나타남 */
+}
+
+.portfolio-item img {
+  display: block; /* 이미지를 블록 요소로 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  width: 85%; /* 이미지가 아이템에 맞게 조정 */
+  height: auto;
+  border-radius: 50px;
+  transition: transform 0.3s ease; /* 이미지에 호버 효과 추가 */
+}
+
+.portfolio-item a:hover img {
+  transform: scale(1.05); /* 호버 시 이미지 확대 */
+}
+
+.portfolio-item h3, .portfolio-item p {
+  margin: 10px 0;
+}
+
+.portfolio-item h3 {
+  font-size: 18px;
+}
+
+.portfolio-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+
+
+/* 소개글 섹션의 애니메이션 */
+.about-image,
+.about-text {
+  opacity: 0; /* 기본적으로 숨김 상태 */
+  transform: translateY(20px); /* 살짝 아래에서 시작 */
+  transition: opacity 1s ease-out, transform 1s ease-out; /* 애니메이션 효과 */
+}
+
+.about-image.in-view {
+  opacity: 1;
+  transform: translateY(0); /* 원래 위치로 돌아오면서 서서히 나타남 */
+}
+
+.about-text.in-view {
+  opacity: 1;
+  transform: translateY(0); /* 원래 위치로 돌아오면서 서서히 나타남 */
+  transition-delay: 0.5s; /* 이미지 애니메이션 후에 텍스트 애니메이션 시작 */
+}
+
+/* 컨텍트 */
+.contact-section {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+}
+
+.contact-content {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background: white; /* 또는 원하는 배경 색상 */
+  padding: 20px;
+}
+
+.contact-section.visible {
+  opacity: 1;
+}
+
+@keyframes reveal {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.contact-content {
+  box-shadow: 0px -20px 25px #ddd;
+  animation: reveal 1s ease-out;
+  font-family: 'Pretendard-Regular';
+  font-weight: bold;
+  font-size: 20px;
+  text-align: center;
+}
