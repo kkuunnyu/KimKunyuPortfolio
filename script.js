@@ -85,13 +85,13 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
   const aboutImage = document.querySelector(".about-image");
   const aboutText = document.querySelector(".about-text");
-  const extraAboutText = document.querySelector("#extra-about .about-text");  // 새 섹션 선택
+  const extraAboutText = document.querySelector("#extra-about .about-text"); 
 
   function checkInView() {
     const windowHeight = window.innerHeight;
     const imageTop = aboutImage.getBoundingClientRect().top;
     const textTop = aboutText.getBoundingClientRect().top;
-    const extraTextTop = extraAboutText.getBoundingClientRect().top; // 새 섹션의 위치
+    const extraTextTop = extraAboutText.getBoundingClientRect().top; 
 
     if (imageTop <= windowHeight * 0.8) {
       aboutImage.classList.add("in-view");
