@@ -1,3 +1,5 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
   const balloons = document.querySelectorAll(".balloon");
   const aboutSection = document.querySelector(".about-section");
@@ -201,4 +203,11 @@ document.addEventListener('scroll', function() {
   if (contactPosition < windowHeight) {
     contactSection.classList.add('visible');
   }
+});
+
+const hamburger = document.querySelector('.hamburger');
+const navbar = document.querySelector('.navbar');
+
+hamburger.addEventListener('click', () => {
+  navbar.classList.toggle('active'); // active 클래스 추가/제거
 });
