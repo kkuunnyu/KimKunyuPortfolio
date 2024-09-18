@@ -674,6 +674,7 @@ body .moving-text-container {
 
 .portfolio-item a:hover img {
   transform: scale(1.05); 
+}
 
 .portfolio-item h3, .portfolio-item p {
   margin: 10px 0;
@@ -749,7 +750,7 @@ body .moving-text-container {
   display: flex;
   align-items: center;
   justify-content: center; 
-  gap: 10px; 
+  gap: 10px;
 }
 
 .copyright {
@@ -773,4 +774,3 @@ body .moving-text-container {
   margin: 5px 0;
   transition: 0.4s;
 }
-
