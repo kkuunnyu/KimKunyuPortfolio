@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>김건유 포트폴리오 | UI/UX 웹 퍼블리셔</title>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -13,13 +14,19 @@
     <a href="index.html" class="logo">
       <img src="./img/logo.png" alt="Logo">
     </a>
-    <ul>
+    <ul class="nav-links">
       <li><a href="#home">Home</a></li>
       <li><a href="#about">About</a></li>
       <li><a href="#portfolio">Portfolio</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </nav>
+  
 
   <section id="home" class="balloon-section">
     <div class="balloon-container">
@@ -68,10 +75,10 @@
     <div class="about-text">
       <p class="about-me">About Me</p>
       <p class="introduce">안녕하세요! 김건유입니다.<br>
-        제 인생은 마치 풍선처럼, 언제나 높이 날아오르는 꿈과 포부로 가득 차 있습니다.<br>
+        제 인생은 마치 풍선처럼, 언제나 높이 날아오르는<br> 꿈과 포부로 가득 차 있습니다.<br>
         매일매일 새로운 도전을 받아들이며,<br>
         긍정적인 에너지와 열정으로 세상을 탐험하고 있습니다.<br><br>
-        디자이너로서 혁신적이고 직관적인 디자인을 통해 사용자 경험을 향상시키고, 사람들의 일상에 가치를 더하고 싶습니다.</p>
+        디자이너로서 혁신적이고 직관적인 디자인을 통해 사용자 경험을 향상시키고,<br> 사람들의 일상에 가치를 더하고 싶습니다.</p>
     </div>
   </div>
 </section>
@@ -167,8 +174,9 @@
 
   <section id="contact" class="contact-section">
     <div class="contact-content">
-      <p>전화번호 : 010-8851-8258</p>
-      <p>이메일 : shoes0720@gmail.com</p>
+      <p class="contact-address"><i class="fa-solid fa-phone"></i>&nbsp;&nbsp;010-8851-8258</p>
+      <p class="contact-address"><i class="fa-solid fa-envelope"></i>&nbsp;&nbsp;shoes0720@gmail.com</p>
+      <p class="copyright">© 2024. KIMKUNYU All Rights Reserved.</p>
     </div>
   </section>
   
