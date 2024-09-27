@@ -85,13 +85,13 @@ document.addEventListener("DOMContentLoaded", function() {
 document.addEventListener("DOMContentLoaded", function() {
   const aboutImage = document.querySelector(".about-image");
   const aboutText = document.querySelector(".about-text");
-  const extraAboutText = document.querySelector("#extra-about .about-text"); 
+  const extraAboutText = document.querySelector("#extra-about .about-text");  // 새 섹션 선택
 
   function checkInView() {
     const windowHeight = window.innerHeight;
     const imageTop = aboutImage.getBoundingClientRect().top;
     const textTop = aboutText.getBoundingClientRect().top;
-    const extraTextTop = extraAboutText.getBoundingClientRect().top; 
+    const extraTextTop = extraAboutText.getBoundingClientRect().top; // 새 섹션의 위치
 
     if (imageTop <= windowHeight * 0.8) {
       aboutImage.classList.add("in-view");
@@ -192,4 +192,23 @@ const navbar = document.querySelector('.navbar');
 
 hamburger.addEventListener('click', () => {
   navbar.classList.toggle('active'); 
+});
+
+
+//top button
+let topButton = document.getElementById("topBtn");
+
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+    topButton.classList.add("show");  // Add 'show' class to trigger opacity and visibility
+  } else {
+    topButton.classList.remove("show");  // Remove 'show' class to hide with smooth effect
+  }
+}
+
+topButton.addEventListener('click', function(e) {
+  e.preventDefault(); 
+  window.scrollTo({top: 0, behavior: 'smooth'});
 });
